@@ -42,5 +42,3 @@ def safe_pass() -> str:
             is_safe = True
     
     return "".join(password)
-
-print(safe_pass())
