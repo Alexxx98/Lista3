@@ -2,26 +2,23 @@ import logging
 from sys import argv
 
 
-def logs():
-    level = logging.DEBUG
-    levels = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
-    
-    if len(argv) == 2 and argv[1].upper() not in levels:
-        print("Invalid argument, choose from: DEBUG, INFO, WARNING, ERROR or CRITICAL")
-    elif len(argv) != 2:
-        print("There should be one command-line argument")
-    else:
-        if argv[1].upper() == levels[0]:
-            level = logging.DEBUG
-        elif argv[1].upper() == levels[1]:
-            level = logging.INFO
-        elif argv[1].upper() == levels[2]:
-            level = logging.WARINIG
-        elif argv[1].upper() == levels[3]:
-            level = logging.ERROR
-        else:
-            level = logging.CRITICAL
-    
-    logging.basicConfig(level=level, format="%(asctime)s / %(message)s")
-    
+def logs(*args):
+    levels = {"DEBUG": logging.DEBUG, "INFO": logging.INFO, "WARNING": logging.WARNING, "ERROR": logging.ERROR, "CRITICAL": logging.CRITICAL}
+    try:
+        level = levels.get(argv[1].upper(), None)
+    except IndexError:
+        raise KeyError("No command-line argument")
+
+    if len(argv) > 2:
+        raise KeyError("There can only be one command-line argument")
+
+    if argv[1].upper() not in levels.keys():
+        raise KeyError("Invalid argument, try DEBUG, INFO, WARNING, ERROR or CRITICAL")
+
+    logging.basicConfig(level=level, format="%(asctime)s / %(funcName)s / %(message)s")
+
     # Space for logs declaration
+
+    # Sample usage:
+    # for a in args:
+        # logging.info(a)
