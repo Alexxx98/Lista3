@@ -8,5 +8,5 @@ def encrypt(sentence: str) -> str:
     # Convert to 6 bits bytes (base64 bytes)
     b64_bytes = b64encode(sentence_bytes)
 
-    # return encrypted sentence with ASCII
+    # return encrypted sentence by decoding bytes into ASCII
     return b64_bytes.decode('ascii')
