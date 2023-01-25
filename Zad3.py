@@ -7,4 +7,4 @@ def safe_pass() -> str:
     n = randint(2, 4)
 
     # Choose random characters of all kind and create random password at least 8 characters long 
-    return  ''.join([''.join([choice(ascii_lowercase), choice(ascii_uppercase), choice(digits), choice(punctuation)]) for _ in range(n)])
+    return ''.join([''.join([choice(ascii_lowercase), choice(ascii_uppercase), choice(digits), choice(punctuation)]) for _ in range(n)])
